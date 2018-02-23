@@ -1,0 +1,34 @@
+<ActionBar class="action-bar">
+    <NavigationButton android.systemIcon="ic_menu_back" (tap)="onBackButtonTap()">
+    </NavigationButton>
+    <Label class="action-bar-title" [text]="customer.name" horizontalAlignment="center"></Label>
+    <ActionItem ios.position="right" android.position="right" (tap)="onEditButtonTap()">
+        <Label text="Edit" class="action-item"></Label>
+    </ActionItem>
+</ActionBar>
+
+<GridLayout class="page page-content">
+    <ScrollView>
+        <GridLayout rows="auto, auto, auto">
+            <StackLayout row="1" class="hr-light m-t-15 m-b-15"></StackLayout>
+
+            <GridLayout row="2" rows="*,*,*,*,*,*" columns="auto, auto">
+
+                <Label text="City" class="p-l-15 p-b-10 m-r-20 text-secondary" row="1"></Label>
+                <Label [text]="customer.city" row="1" col="1" class="text p-b-10"></Label>
+
+                <!--Label text="Doors" class="p-l-15 p-b-10 m-r-20 text-secondary" row="2"></Label>
+                <Label [text]="customer.doors" row="2" col="1" class="text p-b-10"></Label>
+
+                <Label text="Seats" class="p-l-15 p-b-10 m-r-20 text-secondary" row="3"></Label>
+                <Label [text]="customer.seats" row="3" col="1" class="text p-b-10"></Label>
+
+                <Label text="Transmission" class="p-l-15 m-r-20 p-b-10 text-secondary" row="4"></Label>
+                <Label [text]="customer.transmission" row="4" col="1" class="text p-b-10"></Label>
+
+                <Label text="Luggage" class="p-l-15 p-b-10 m-r-20 text-secondary" row="5"></Label>
+                <Label [text]="customer.luggage" row="5" col="1" class="text p-b-10"></Label-->
+            </GridLayout>
+        </GridLayout>
+    </ScrollView>
+</GridLayout>

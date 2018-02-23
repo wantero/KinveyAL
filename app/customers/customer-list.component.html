@@ -1,0 +1,25 @@
+<ActionBar class="action-bar">
+    <!-- Should remove the navigation button -->
+    <NavigationButton ios:visibility="collapsed"></NavigationButton>
+    <Label class="action-bar-title" text="Clientes" horizontalAlignment="center"></Label>
+</ActionBar>
+
+<GridLayout class="page page-content">
+    <RadListView [items]="customers" (itemTap)="onCustomerItemTap($event)" class="list-group">
+    <!--
+    RadListView is a UI component part of the Progress NativeScript UI set of components.
+    Learn more about the RadListView UI component and how it can be customized in this documentation article:
+    http://docs.telerik.com/devtools/nativescript-ui/Controls/Angular/ListView/getting-started
+    This component is used to display the master list in the master-detail structure.
+    -->
+        <ng-template tkListItemTemplate let-customer="item">
+            <StackLayout class="list-group-item">
+                <GridLayout rows="*, *, *" columns="*, *" class="list-group-item-content">
+                    <Label [text]="customer.name" class="text-primary font-weight-bold"></Label>
+                </GridLayout>
+            </StackLayout>
+        </ng-template>
+    </RadListView>
+
+    <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
+</GridLayout>

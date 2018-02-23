@@ -1,0 +1,27 @@
+<ActionBar class="action-bar">
+    <!--HACK - we should remove the navigation button-->
+    <NavigationButton visibility="collapsed"></NavigationButton>
+    <ActionItem ios.position="left" android.position="left" (tap)="onCancelButtonTap()">
+        <Label text="Cancel" class="action-item"></Label>
+    </ActionItem>
+    <Label class="action-bar-title" text="Editar Cliente" horizontalAlignment="center"></Label>
+    <ActionItem ios.position="right" android.position="right">
+        <Label text="Done" class="action-item" verticalAlignment="center" (tap)="onDoneButtonTap()" 
+            [isEnabled]="makeModel.valid"
+            [isUserInteractionEnabled]="makeModel.valid"></Label>
+    </ActionItem>
+</ActionBar>
+
+<GridLayout class="page page-content">
+    <ScrollView>
+        <StackLayout class="customer-list">
+            <Label text="NOME" class="customer-list-odd"></Label>
+            <TextField #makeModel="ngModel" hint="Nome" [(ngModel)]="customer.name" class="customer-list-even" required></TextField>
+
+            <Label text="CIDADE" class="customer-list-odd"></Label>
+            <TextField #makeModel="ngModel" hint="Cidade" [(ngModel)]="customer.city" class="customer-list-even" required></TextField>
+        </StackLayout>
+    </ScrollView>
+
+    <ActivityIndicator [busy]="isUpdating"></ActivityIndicator>
+</GridLayout>

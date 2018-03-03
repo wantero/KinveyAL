@@ -16,10 +16,10 @@
     <ScrollView>
         <StackLayout class="customer-list">
             <Label text="NOME" class="customer-list-odd"></Label>
-            <TextField #makeModel="ngModel" hint="Nome" [(ngModel)]="customer.name" class="customer-list-even" required></TextField>
+            <TextField #makeModel="ngModel" hint="Nome" [(ngModel)]="_customer.Name" class="customer-list-even" required></TextField>
 
             <Label text="CIDADE" class="customer-list-odd"></Label>
-            <TextField #makeModel="ngModel" hint="Cidade" [(ngModel)]="customer.city" class="customer-list-even" required></TextField>
+            <TextField #makeModel="ngModel" hint="Cidade" [(ngModel)]="_customer.City" class="customer-list-even" required></TextField>
         </StackLayout>
     </ScrollView>
 

@@ -3,13 +3,25 @@ import { Kinvey } from "kinvey-nativescript-sdk";
 import { Config } from "../../shared/config";
 import { Customer } from "./customer.model";
 
+const editableProperties = [
+    "Name",
+    "City"
+];
+
 @Injectable()
 export class CustomerService {
+
+    private static cloneUpdateModel(customer: Customer): object {
+        // tslint:disable-next-line:ban-comma-operator
+        return editableProperties.reduce((a, e) => (a[e] = customer[e], a), { _id: customer.id });
+    }
+    
 
     private allCustomers: Array<Customer> = [];
     private customersStore = Kinvey.DataStore.collection<any>("Customer");    
 
     getCustomerById(id: string): Customer {
+        //console.log('getCustomerById id: ' + id);
         if (!id) {
             return;
         }
@@ -26,12 +38,12 @@ export class CustomerService {
         });*/
         return this.login().then(() => {
             console.log("Sync");
-            this.customersStore.clear();
+            //this.customersStore.clear();
             return this.customersStore.sync();
         }).then(() => {
             console.log('Query');
             const sortByNameQuery = new Kinvey.Query();
-            sortByNameQuery.ascending("name");
+            sortByNameQuery.ascending("Name");
             const stream = this.customersStore.find(sortByNameQuery);
 
             console.log('stream: ' + JSON.stringify(stream));
@@ -41,9 +53,12 @@ export class CustomerService {
             console.log('allCustomers');
             this.allCustomers = [];
             data.forEach((customerData: any) => {
-                console.log(customerData);
-                customerData.id = customerData._id;
+                //console.log('forEach: ' + JSON.stringify(customerData));
+                customerData.id   = customerData._id;
+                
                 const customer = new Customer(customerData);
+
+                console.log('forEach: ' + JSON.stringify(customer));
 
                 this.allCustomers.push(customer);
             });
@@ -51,6 +66,12 @@ export class CustomerService {
             return this.allCustomers;
         });
     }
+
+    update(customerModel: Customer): Promise<any> {
+        const updateModel = CustomerService.cloneUpdateModel(customerModel);
+
+        return this.customersStore.save(updateModel);
+    }    
 
     private mock(): Promise<any> {
         var _customerData: any = [];

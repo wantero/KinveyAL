@@ -45,6 +45,8 @@ export class CustomerDetailEditComponent implements OnInit {
                 const customerId = params.id;
 
                 this._customer = this._customerEditService.startEdit(customerId);
+
+                console.log('this._customer: ' + JSON.stringify(this._customer));
             });
     }
 
@@ -57,11 +59,11 @@ export class CustomerDetailEditComponent implements OnInit {
     }
 
     get cityValue(): string {
-        return this._customer.city;
+        return this._customer.City;
     }
 
     set cityValue(value: string) {
-        this._customer.city = value;
+        this._customer.City = value;
     }
 
     /* ***********************************************************
@@ -82,18 +84,9 @@ export class CustomerDetailEditComponent implements OnInit {
         * and uncomment the code block below to make it editable.
         *************************************************************/
 
-        /* ***********************uncomment here*********************
         let queue = Promise.resolve();
 
         this._isUpdating = true;
-
-        if (this._isCustomerImageDirty && this._customer.imageUrl) {
-            queue = queue
-                .then(() => this._customerService.uploadImage(this._customer.imageStoragePath, this._customer.imageUrl))
-                .then((uploadedFile: any) => {
-                    this._customer.imageUrl = uploadedFile.url;
-                });
-        }
 
         queue.then(() => this._customerService.update(this._customer))
             .then(() => {
@@ -110,13 +103,13 @@ export class CustomerDetailEditComponent implements OnInit {
             })
             .catch((errorMessage: any) => {
                 this._isUpdating = false;
-                alert({ title: "Oops!", message: "Something went wrong. Please try again.", okButtonText: "Ok" });
+                alert({ title: "Oops!", message: "Alguma coisa aconteceu errada. Tente novamente.", okButtonText: "Ok" });
             });
-        *********************uncomment here*************************/
 
         /* ***********************************************************
         * Comment out the code block below if you made the app editable.
         *************************************************************/
+       /*
         const readOnlyMessage = "Check out the \"Kinvey database setup\" section in the readme file to make it editable."; // tslint:disable-line:max-line-length
         const queue = Promise.resolve();
         queue.then(() => alert({ title: "Read-Only Template!", message: readOnlyMessage, okButtonText: "Ok" }))
@@ -129,6 +122,7 @@ export class CustomerDetailEditComponent implements OnInit {
                     curve: "ease"
                 }
             }));
+            */
     }
 
     private initializeEditOptions(): void {

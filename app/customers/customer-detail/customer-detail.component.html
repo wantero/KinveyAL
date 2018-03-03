@@ -1,7 +1,7 @@
 <ActionBar class="action-bar">
     <NavigationButton android.systemIcon="ic_menu_back" (tap)="onBackButtonTap()">
     </NavigationButton>
-    <Label class="action-bar-title" [text]="customer.name" horizontalAlignment="center"></Label>
+    <Label class="action-bar-title" [text]="customer.Name" horizontalAlignment="center"></Label>
     <ActionItem ios.position="right" android.position="right" (tap)="onEditButtonTap()">
         <Label text="Edit" class="action-item"></Label>
     </ActionItem>
@@ -15,7 +15,7 @@
             <GridLayout row="2" rows="*,*,*,*,*,*" columns="auto, auto">
 
                 <Label text="City" class="p-l-15 p-b-10 m-r-20 text-secondary" row="1"></Label>
-                <Label [text]="customer.city" row="1" col="1" class="text p-b-10"></Label>
+                <Label [text]="customer.City" row="1" col="1" class="text p-b-10"></Label>
 
                 <!--Label text="Doors" class="p-l-15 p-b-10 m-r-20 text-secondary" row="2"></Label>
                 <Label [text]="customer.doors" row="2" col="1" class="text p-b-10"></Label>

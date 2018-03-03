@@ -18,9 +18,11 @@ export class CustomerEditService {
     getEditableCustomerById(id: string): Customer {
         if (!this._editModel || this._editModel.id !== id) {
             const customer = this._customerService.getCustomerById(id);
+            console.log('getEditableCustomerById: ' + console.log(JSON.stringify(customer)));
 
             // get fresh editable copy of customer model
             this._editModel = new Customer(customer);
+            console.log('this._editModel: ' + this._editModel.Name);
         }
 
         return this._editModel;

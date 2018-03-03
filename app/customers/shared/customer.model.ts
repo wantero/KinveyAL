@@ -1,12 +1,12 @@
 export class Customer {
     id: string;
-    name: string;
-    city: string;
+    Name: string;
+    City: string;
 
     constructor(options: any) {
-        console.log(JSON.stringify(options));
+        console.log("class Customer: " + JSON.stringify(options));
         this.id = options.id;
-        this.name = options.Name;
-        this.city = options.City;
+        this.Name = options.Name;
+        this.City = options.City;
     }
 }

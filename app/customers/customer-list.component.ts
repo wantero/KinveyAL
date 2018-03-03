@@ -41,7 +41,7 @@ export class CustomerListComponent implements OnInit {
         this._customerService.load()
             .then((customers: Array<Customer>) => {
                 console.log('list');
-                console.log(JSON.stringify(customers));
+                //console.log(JSON.stringify(customers));
                 this._customers = new ObservableArray(customers);
                 this._isLoading = false;
             })

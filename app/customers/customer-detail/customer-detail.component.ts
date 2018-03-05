@@ -58,7 +58,7 @@ export class CustomerDetailComponent implements OnInit {
     * Check out the edit page in the /customers/customer-detail-edit folder.
     *************************************************************/
     onEditButtonTap(): void {
-        console.log("onTap: " + this._customer.id);
+        //console.log("onTap: " + this._customer.id);
         this._routerExtensions.navigate(["/customers/customer-detail-edit", this._customer.id],
             {
                 animated: true,

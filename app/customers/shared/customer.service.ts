@@ -38,20 +38,20 @@ export class CustomerService {
             return this.allCustomers;
         });*/
         return this.login().then(() => {
-            console.log("Sync");
+            //console.log("Sync");
             //this.customersStore.clear();
             return this.customersStore.sync();
         }).then(() => {
-            console.log('Query');
+            //console.log('Query');
             const sortByNameQuery = new Kinvey.Query();
             sortByNameQuery.ascending("Name");
             const stream = this.customersStore.find(sortByNameQuery);
 
-            console.log('stream: ' + JSON.stringify(stream));
+            //console.log('stream: ' + JSON.stringify(stream));
 
             return stream.toPromise();
         }).then((data) => {
-            console.log('allCustomers');
+            //console.log('allCustomers');
             this.allCustomers = [];
             data.forEach((customerData: any) => {
                 //console.log('forEach: ' + JSON.stringify(customerData));
@@ -59,7 +59,7 @@ export class CustomerService {
                 
                 const customer = new Customer(customerData);
 
-                console.log('forEach: ' + JSON.stringify(customer));
+                //console.log('forEach: ' + JSON.stringify(customer));
 
                 this.allCustomers.push(customer);
             });
@@ -71,7 +71,7 @@ export class CustomerService {
     update(customerModel: Customer): Promise<any> {
         const updateModel = CustomerService.cloneUpdateModel(customerModel);
 
-        console.log('updateModel: ' + JSON.stringify(updateModel));
+        //console.log('updateModel: ' + JSON.stringify(updateModel));
 
         return this.customersStore.save(updateModel);
     }    
@@ -97,12 +97,12 @@ export class CustomerService {
     }
 
     private login(): Promise<any> {
-        console.log(!!Kinvey.User.getActiveUser());
+        //console.log(!!Kinvey.User.getActiveUser());
         if (!!Kinvey.User.getActiveUser()) {
-            console.log('promise');
+            //console.log('promise');
             return Promise.resolve();
         } else {
-            console.log('Kinvey login');
+            //console.log('Kinvey login');
             return Kinvey.User.login(Config.kinveyUsername, Config.kinveyPassword);
         }
     }    

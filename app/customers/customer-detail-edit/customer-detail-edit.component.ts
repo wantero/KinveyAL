@@ -46,7 +46,7 @@ export class CustomerDetailEditComponent implements OnInit {
 
                 this._customer = this._customerEditService.startEdit(customerId);
 
-                console.log('this._customer: ' + JSON.stringify(this._customer));
+                //console.log('this._customer: ' + JSON.stringify(this._customer));
             });
     }
 

@@ -5,7 +5,8 @@ import { Customer } from "./customer.model";
 
 const editableProperties = [
     "Name",
-    "City"
+    "City",
+    "rowid"
 ];
 
 @Injectable()
@@ -69,6 +70,8 @@ export class CustomerService {
 
     update(customerModel: Customer): Promise<any> {
         const updateModel = CustomerService.cloneUpdateModel(customerModel);
+
+        console.log('updateModel: ' + JSON.stringify(updateModel));
 
         return this.customersStore.save(updateModel);
     }    
